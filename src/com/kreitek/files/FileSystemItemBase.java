@@ -1,5 +1,7 @@
 package com.kreitek.files;
 
+import com.kreitek.files.interfaces.FileSystemItem;
+
 import java.util.List;
 
 public abstract class FileSystemItemBase implements FileSystemItem {
@@ -32,7 +34,7 @@ public abstract class FileSystemItemBase implements FileSystemItem {
 
     @Override
     public void setParent(FileSystemItem directory) {
-        if (directory != null && !(directory instanceof Directory)) {
+        if (directory != null && !(directory instanceof DirectoryImpl)) {
             throw new IllegalArgumentException("El padre solo puede ser un directorio");
         }
         if (this.parent != directory) {
@@ -54,25 +56,5 @@ public abstract class FileSystemItemBase implements FileSystemItem {
     }
 
     @Override
-    public abstract String getExtension();
-
-    @Override
-    public abstract List<FileSystemItem> listFiles();
-
-    @Override
     public abstract int getSize();
-
-    @Override
-    public abstract void open();
-
-    @Override
-    public abstract void setPosition(int numberOfBytesFromBeginning);
-
-    @Override
-    public abstract byte[] read(int numberOfBytesToRead);
-
-    @Override
-    public abstract void write(byte[] buffer);
-
-    public abstract void close();
 }
