@@ -2,14 +2,12 @@ package com.kreitek.utils;
 
 import com.kreitek.files.DirectoryImpl;
 import com.kreitek.files.FileImpl;
-import com.kreitek.files.interfaces.Directory;
 import com.kreitek.files.interfaces.FileSystemItem;
 
 public class FileSystemBuilder {
 
-    private final DirectoryImpl root;
-    private DirectoryImpl currentDirectory;
-
+    private final FileSystemItem root;
+    private FileSystemItem currentDirectory;
 
     public static FileSystemBuilder getBuilder() {
         return new FileSystemBuilder();
@@ -21,18 +19,18 @@ public class FileSystemBuilder {
     }
 
     public FileSystemBuilder addFile(String name, int size) {
-        FileImpl fileImpl = new FileImpl(currentDirectory, name);
-        fileImpl.open();
-        fileImpl.write(new byte[size]);
-        fileImpl.close();
-        currentDirectory.addFile(fileImpl);
+        FileSystemItem file = new FileImpl(currentDirectory, name);
+        file.open();
+        file.write(new byte[size]);
+        file.close();
+        currentDirectory.addFile(file);
         return this;
     }
 
     public FileSystemBuilder addDirectory(String name) {
-        DirectoryImpl directoryImpl = new DirectoryImpl(currentDirectory, name);
-        currentDirectory.addFile(directoryImpl);
-        currentDirectory = directoryImpl;
+        FileSystemItem directory = new DirectoryImpl(currentDirectory, name);
+        currentDirectory.addFile(directory);
+        currentDirectory = directory;
         return this;
     }
 

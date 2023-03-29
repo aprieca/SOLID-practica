@@ -14,7 +14,7 @@ public  class FileImpl extends FileSystemItemBase implements FileRead, FileWrite
     private boolean isOpen = false;
     private int position = 0;
 
-    public FileImpl(DirectoryImpl parent, String name) {
+    public FileImpl(FileSystemItem parent, String name) {
         super(parent, name);
     }
 
