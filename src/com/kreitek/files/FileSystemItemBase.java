@@ -7,9 +7,9 @@ import java.util.List;
 public abstract class FileSystemItemBase implements FileSystemItem {
     protected static final String PATH_SEPARATOR = "/";
     protected String name;
-    protected FileSystemItem parent;
+    protected DirectoryImpl parent;
 
-    protected FileSystemItemBase(FileSystemItem parent, String name) {
+    protected FileSystemItemBase(DirectoryImpl parent, String name) {
         setName(name);
         setParent(parent);
     }
@@ -28,15 +28,12 @@ public abstract class FileSystemItemBase implements FileSystemItem {
     }
 
     @Override
-    public FileSystemItem getParent() {
+    public DirectoryImpl getParent() {
         return parent;
     }
 
     @Override
-    public void setParent(FileSystemItem directory) {
-        if (directory != null && !(directory instanceof DirectoryImpl)) {
-            throw new IllegalArgumentException("El padre solo puede ser un directorio");
-        }
+    public void setParent(DirectoryImpl directory) {
         if (this.parent != directory) {
             if (this.parent != null) this.parent.removeFile(this);
             this.parent = directory;
