@@ -36,7 +36,7 @@ public class FileSystemBuilder {
 
     public FileSystemBuilder upOneDirectory() {
         if (currentDirectory.getParent() != null) {
-            currentDirectory = currentDirectory.getParent();
+            currentDirectory = (DirectoryImpl) currentDirectory.getParent();
         }
         return this;
     }

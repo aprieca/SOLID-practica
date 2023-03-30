@@ -11,12 +11,11 @@ public class DirectoryImpl extends FileSystemItemBase implements Directory {
 
     private final List<FileSystemItem> files;
 
-    public DirectoryImpl(DirectoryImpl parent, String name) {
+    public DirectoryImpl(FileSystemItem parent, String name) {
         super(parent, name);
         files = new ArrayList<>();
         // Aquí vendría lógica que rellena la lista de ficheros
     }
-
 
     @Override
     public List<FileSystemItem> listFiles() {

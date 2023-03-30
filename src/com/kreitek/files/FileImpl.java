@@ -1,6 +1,7 @@
 package com.kreitek.files;
 
 import com.kreitek.files.interfaces.FileRead;
+import com.kreitek.files.interfaces.FileSystemItem;
 import com.kreitek.files.interfaces.FileUtilities;
 import com.kreitek.files.interfaces.FileWrite;
 
@@ -10,7 +11,7 @@ public  class FileImpl extends FileSystemItemBase implements FileRead, FileWrite
     private boolean isOpen = false;
     private int position = 0;
 
-    public FileImpl(DirectoryImpl parent, String name) {
+    public FileImpl(FileSystemItem parent, String name) {
         super(parent, name);
     }
 

@@ -1,7 +1,8 @@
 package com.kreitek.files;
+import com.kreitek.files.interfaces.FileSystemItem;
 
 public abstract class FileConverter extends FileImpl {
-    public FileConverter(DirectoryImpl parent, String name) {
+    public FileConverter(FileSystemItem parent, String name) {
         super(parent, name);
     }
 

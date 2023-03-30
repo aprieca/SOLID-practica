@@ -1,14 +1,14 @@
 package com.kreitek.files;
 
+import com.kreitek.files.interfaces.Directory;
 import com.kreitek.files.interfaces.FileSystemItem;
-
 
 public abstract class FileSystemItemBase implements FileSystemItem {
     protected static final String PATH_SEPARATOR = "/";
     protected String name;
-    protected DirectoryImpl parent;
+    protected FileSystemItem parent;
 
-    protected FileSystemItemBase(DirectoryImpl parent, String name) {
+    protected FileSystemItemBase(FileSystemItem parent, String name) {
         setName(name);
         setParent(parent);
     }
@@ -23,23 +23,25 @@ public abstract class FileSystemItemBase implements FileSystemItem {
         if (name == null) {
             throw new IllegalArgumentException("El nombre no puede ser nulo");
         }
-       this.name = name;
+        this.name = name;
     }
 
     @Override
-    public DirectoryImpl getParent() {
+    public FileSystemItem getParent() {
         return parent;
     }
 
     @Override
-    public void setParent(DirectoryImpl directory) {
-        if (this.parent != directory) {
-            if (this.parent != null) this.parent.removeFile(this);
-            this.parent = directory;
-            if (directory != null) directory.addFile(this);
+    public void setParent(FileSystemItem item) {
+        if (item != null && !(item instanceof Directory)) {
+            throw new IllegalArgumentException("El padre solo puede ser un directorio");
+        }
+        if (this.parent != item) {
+            if (this.parent != null) ((Directory)parent).removeFile(this);
+            this.parent = item;
+            if (item != null) ((Directory)item).addFile(this);
         }
     }
-
     @Override
     public String getFullPath() {
         String path = PATH_SEPARATOR;
