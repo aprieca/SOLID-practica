@@ -2,7 +2,6 @@ package com.kreitek.files.interfaces;
 
 import com.kreitek.files.DirectoryImpl;
 
-import java.util.List;
 
 public interface FileSystemItem {
     String getName();

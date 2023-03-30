@@ -1,12 +1,8 @@
 package com.kreitek.files;
 
-import com.kreitek.files.error.InvalidFileFormatException;
 import com.kreitek.files.interfaces.FileRead;
-import com.kreitek.files.interfaces.FileSystemItem;
 import com.kreitek.files.interfaces.FileUtilities;
 import com.kreitek.files.interfaces.FileWrite;
-
-import java.util.List;
 
 public  class FileImpl extends FileSystemItemBase implements FileRead, FileWrite, FileUtilities {
 
