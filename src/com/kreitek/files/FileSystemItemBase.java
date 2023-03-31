@@ -33,7 +33,7 @@ public abstract class FileSystemItemBase implements FileSystemItem {
 
     @Override
     public void setParent(FileSystemItem item) {
-        if (item != null && !(item instanceof Directory)) {
+        if (item != null && !(item instanceof DirectoryImpl)) {
             throw new IllegalArgumentException("El padre solo puede ser un directorio");
         }
         if (this.parent != item) {
